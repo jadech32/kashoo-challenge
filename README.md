@@ -14,7 +14,7 @@ NOTE: The `Makefile` assumes you have `swagger-codegen` installed via homebrew. 
 
 ### API Key
 
-A ipgeolocation.io API key is required. Create a `.env` file in the root directory that contains the `API_KEY` token, or otherwise (e.g. Kubernetes ConfigMap, etc.)
+A ipgeolocation.io API key is required. Create a `.env` file in the root directory that contains the `API_KEY` token. Currently an `.env` file is required for the program to run (no other way to load env variables)
 
 ### How To Run
 
