@@ -1,0 +1,73 @@
+{
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Queries and returns location data for IP addresses",
+        "title": "Geolocation API",
+        "contact": {},
+        "license": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/geolocate/{ip}": {
+            "get": {
+                "description": "Queries ipgeolocation.io for a valid IP address' geolocation.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get geolocation of an IP",
+                "operationId": "geolocate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "IP Address",
+                        "name": "ip",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/main.HTTPError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.HTTPError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 404
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Invalid IP Address"
+                }
+            }
+        }
+    }
+}

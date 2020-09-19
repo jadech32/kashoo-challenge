@@ -1,0 +1,50 @@
+basePath: /
+definitions:
+  main.HTTPError:
+    properties:
+      code:
+        example: 404
+        type: integer
+      message:
+        example: Invalid IP Address
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Queries and returns location data for IP addresses
+  license: {}
+  title: Geolocation API
+  version: "1.0"
+paths:
+  /geolocate/{ip}:
+    get:
+      description: Queries ipgeolocation.io for a valid IP address' geolocation.
+      operationId: geolocate
+      parameters:
+      - description: IP Address
+        in: path
+        name: ip
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful Operation
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.HTTPError'
+      summary: Get geolocation of an IP
+schemes:
+- http
+- https
+swagger: "2.0"

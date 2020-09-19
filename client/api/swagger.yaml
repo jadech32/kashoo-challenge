@@ -1,0 +1,58 @@
+openapi: 3.0.1
+info:
+  title: Geolocation API
+  description: Queries and returns location data for IP addresses
+  contact: {}
+  license: {}
+  version: "1.0"
+servers:
+- url: http://localhost:8080/
+- url: https://localhost:8080/
+paths:
+  /geolocate/{ip}:
+    get:
+      summary: Get geolocation of an IP
+      description: Queries ipgeolocation.io for a valid IP address' geolocation.
+      operationId: geolocate
+      parameters:
+      - name: ip
+        in: path
+        description: IP Address
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                x-content-type: application/json
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/main.HTTPError'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/main.HTTPError'
+components:
+  schemas:
+    main.HTTPError:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: Invalid IP Address
