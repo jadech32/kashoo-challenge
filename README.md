@@ -18,7 +18,7 @@ A ipgeolocation.io API key is required. Create a `.env` file in the root directo
 
 ### How To Run
 
-#### As an executable
+Since a Swagger/OpenAPI specification is required as one of the API's endpoints, run `make swagger-docs` to create RESTful API documentation for our API.
 
-1. Build the binary with `make build`
+1. Build the binary with `make build` or `make all` to also create the client.
 2. Run binary with `./server`
