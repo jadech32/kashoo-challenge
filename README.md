@@ -22,3 +22,14 @@ Since a Swagger/OpenAPI specification is required as one of the API's endpoints,
 
 1. Build the binary with `make build` or `make all` to also create the client.
 2. Run binary with `./server`
+
+
+### Endpoints
+
+**GET /geolocate/<ip_address>**
+
+IP geolocation that queries an IP address and returns location data
+
+**GET /swagger/index.html**
+
+Displays Swagger/OpenAPI specification of the endpoint above
