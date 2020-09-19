@@ -62,6 +62,9 @@ func main() {
 func geolocateHandler(c echo.Context) error {
 	ip := c.Param("ip")
 
+	// Alternatively, we could use net.ParseIP() to parse the IP.
+	// ipgeolocation.io does this for us.
+
 	// Request IP Geolocation Data
 	u, err := url.Parse("https://api.ipgeolocation.io/ipgeo")
 	if err != nil {
