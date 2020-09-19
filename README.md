@@ -23,6 +23,8 @@ Since a Swagger/OpenAPI specification is required as one of the API's endpoints,
 1. Build the binary with `make build` or `make all` to also create the client.
 2. Run binary with `./server`
 
+NOTE: `make build` does not run `make swagger-docs`, which generates Swagger/OpenAPI spec for the swagger endpoint.
+
 
 ### Endpoints
 
