@@ -5,7 +5,9 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 
+	"github.com/joho/godotenv"
 	log "github.com/sirupsen/logrus"
 
 	_ "github.com/jadech32/kashoo-challenge/docs"
@@ -24,6 +26,18 @@ import (
 // @produce	json
 
 func main() {
+	// Load Environment Variables
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	// See if API_KEY exists.
+	_, ok := os.LookupEnv("API_KEY")
+	if !ok {
+		log.Fatal("API_KEY environment variable does not exist.")
+	}
+
 	e := echo.New()
 
 	// Routes
@@ -47,15 +61,18 @@ func main() {
 // @Router /geolocate/{ip} [get]
 func geolocateHandler(c echo.Context) error {
 	ip := c.Param("ip")
+
 	// Request IP Geolocation Data
 	u, err := url.Parse("https://api.ipgeolocation.io/ipgeo")
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	name := os.Getenv("API_KEY")
+
 	queryString := u.Query()
 	queryString.Add("ip", ip)
-	queryString.Add("apiKey", "8806ad5a2f514e61bd7b00f92c8c312e")
+	queryString.Add("apiKey", name)
 
 	u.RawQuery = queryString.Encode()
 

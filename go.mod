@@ -20,6 +20,7 @@ require (
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/iancoleman/strcase v0.1.1 // indirect
 	github.com/ianlancetaylor/demangle v0.0.0-20200824232613-28f6c0f3b639 // indirect
+	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/kr/pretty v0.2.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
